@@ -2,9 +2,9 @@
 
 This R code is useful for examing news shared by twitter users. The functions provided: 
 
-* Expands shortened urls embedded in tweets
-* Provides the news source
-* Scraps web for text from the news article 
+* Expand shortened urls embedded in tweets
+* Provide the news source
+* Scrap the web for text from the news article 
 
 You may apply functions to vector objects or a data frame of tweets. Code was created consider the packages `rtweet` and `streamR`. However, the functions work on any data frame. If using a dataframe, tweets must be stored in a column entitled *text*. 
 
