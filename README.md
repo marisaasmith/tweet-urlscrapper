@@ -106,3 +106,6 @@ getText(tweets$full.url, tweets$source)
 &nbsp;
 &nbsp;
 
+Eventually, I plan to create a package with these and similar functions that assists social media news analysis. 
+&nbsp;
+
