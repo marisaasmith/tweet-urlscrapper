@@ -10,9 +10,8 @@ You may apply functions to vector objects or a data frame of tweets. Code was cr
 
 `getURL` creates a data frame containing all of the urls shared the corresponding tweet. Since some tweets contain multiple urls, the data frame may contain duplicate tweets (but it will not duplicate matches of the tweet and the url). 
 
-&nbsp;
 
-##### Example for url and source detection
+#### Example for url and source detection
 
 Tweets were collected using `rtweet`. Sample of 87 tweets containing the keywords *Trump* or *Obama*. 
 
@@ -65,7 +64,7 @@ tweets <- getUrl(tweets)
 ```
 &nbsp;
 
-##### Example for web scrapping 
+#### Example for web scrapping 
 
 `getText` uses `rvest` to shared scrap news articles. **NOTE:** The code uses generic xPath 'p' for webscrapping. Depending on the website, you may want to change the path. I recommend the Google Chrome <a href="https://chrome.google.com/webstore/detail/selectorgadget/mhjhnkcfbdhnjickkkdbjoemdmbfginb?hl=en">selector gadget</a>
 
