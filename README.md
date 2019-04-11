@@ -24,7 +24,7 @@ Run `fullUrl`, `getSource`, and `getUrl` functions
 ```{r}
 
 fullUrl <- function(vector){
-  require(dplyr)
+  require(tidyverse)
   x <- c()
   for (i in 1:length(vector)) { 
     x[i] <- httr::GET(url = vector[i]) %>% 
@@ -35,7 +35,7 @@ fullUrl <- function(vector){
 
 
 getSource <- function(vector){
-  require(dplyr)
+  require(tidyverse)
   source <- vector %>%
   {gsub("^https://|^https://www.|^http://www.", "", .)}%>%
   { gsub("\\>.com.*","", .) } %>%
@@ -46,7 +46,7 @@ getSource <- function(vector){
 
 
 getUrl <- function(df){
-  require(dplyr)
+  require(tidyverse)
   df %>%
     mutate(url = stringr::str_extract_all(text, "https://t.co/[a-z,A-Z,0-9]*")) %>%
     tidyr::unnest(url) %>%
