@@ -102,10 +102,10 @@ getText <- function(url_vector, source_vector){
 getText(tweets$full.url, tweets$source)
 ```
 &nbsp;
+Eventually, I plan to create a package with these and similar functions that assists social media news analysis. 
 &nbsp;
 &nbsp;
 &nbsp;
 
-Eventually, I plan to create a package with these and similar functions that assists social media news analysis. 
-&nbsp;
+
 
