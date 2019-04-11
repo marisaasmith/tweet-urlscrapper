@@ -96,7 +96,7 @@ getText <- function(url_vector, source_vector){
 }
 ```
 
-`getText` returns a data frame of text and the corresponding source (excluding twitter sources)
+`getText` returns a data frame of text and the corresponding source (excluding twitter and youtube sources)
 
 ```{r}
 getText(tweets$full.url, tweets$source)
