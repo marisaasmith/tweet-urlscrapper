@@ -36,12 +36,15 @@ getUrl <- function(df){
 getText <- function(url_vector, source_vector){
   require(rvest)
   require(tidyverse)
-  source_vector <- grep("twitter", source_vector, value = TRUE, invert = T)
-  url.count <- grep("twitter", url_vector, value = TRUE, invert = T)
-  url.count <-  1:length(url.count)
+  source_vector <- test$source %>%
+  {grep("twitter", ., value = TRUE, invert = T)}%>%
+  { grep("youtube", ., value = TRUE, invert = T) }
+  url_vector <- url_vector %>% {grep("twitter", ., value = TRUE, invert = T)} %>% 
+  {grep("youtube", ., value = TRUE, invert = T)}
+  url_count <-  1:length(url_vector)
   article.text.full <- {}
-  for (i in url.count) {
-    article.text  <- data_frame(text = read_html(v[i]) %>% 
+  for (i in url_count) {
+    article.text  <- data_frame(text = read_html(url_vector[i]) %>% 
                                   html_nodes("p") %>% 
                                   html_text())
     
@@ -54,8 +57,3 @@ getText <- function(url_vector, source_vector){
   return(article.text.full)
   
 }
-
-
-
-
-
