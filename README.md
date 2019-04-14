@@ -37,12 +37,13 @@ fullUrl <- function(vector){
 getSource <- function(vector){
   require(tidyverse)
   source <- vector %>%
-  {gsub("^https://|^https://www.|^http://www.", "", .)}%>%
+  {gsub("^https://|^https://www.|^http://www.|http://", "", .)}%>%
   { gsub("\\>.com.*","", .) } %>%
   { gsub("\\>.org.*","", .) } %>%
   { gsub("\\>.co.uk.*","", .) }
   return(source)
 } ## function returns the news source
+
 
 
 getUrl <- function(df){
