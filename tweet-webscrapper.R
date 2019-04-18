@@ -1,15 +1,3 @@
-
-fullUrl <- function(vector){
-  require(tidyverse)
-  x <- c()
-  for (i in 1:length(vector)) { 
-    x[i] <- httr::GET(url = vector[i]) %>% 
-      magrittr::use_series("url")
-  }
-  return(x)
-} ## function returns vector of full urls converted from shortened urls 
-
-
 getSource <- function(vector){
   require(tidyverse)
   source <- vector %>%
@@ -21,16 +9,16 @@ getSource <- function(vector){
 } ## function returns the news source
 
 
-
 getUrl <- function(df){
   require(tidyverse)
   df %>%
     mutate(url = stringr::str_extract_all(text, "https://t.co/[a-z,A-Z,0-9]*")) %>%
-    tidyr::unnest(url) %>%
-    mutate(full.url = fullUrl(url)) %>%
-    group_by(full.url) %>% 
-    distinct() %>% select(-url) %>%
-    mutate(source = getSource (full.url))
+    tidyr::unnest(url) %>% rowwise() %>%
+    mutate(full_url = ifelse(stringr::str_detect(url,"https://t.co/[a-z,A-Z,0-9]*", negate = F) == T, 
+                             {httr::GET(url) %>% magrittr::use_series("url")}, 
+                             NA)) %>% group_by(full_url) %>% 
+    distinct() %>% select(-url) %>% 
+    mutate(source = getSource (full_url))
 }
 
 
