@@ -1,12 +1,10 @@
-getSource <- function(vector){
-  require(tidyverse)
-  source <- vector %>%
-  {gsub("^https://|^https://www.|^http://www.|http://", "", .)}%>%
-  { gsub("\\>.com.*","", .) } %>%
-  { gsub("\\>.org.*","", .) } %>%
-  { gsub("\\>.co.uk.*","", .) }
-  return(source)
-} ## function returns the news source
+getSource <- function(df){
+  df %>% 
+    mutate(source=urls_expanded_url %>%
+             str_replace("^(https?:\\/\\/)?(www\\.)?", "") %>%
+             str_extract("([\\da-z\\.-]+)\\.([a-z\\.]{2,6})") %>%
+             str_replace("^[am]{1}\\.", ""))
+}
 
 
 getUrl <- function(df){
