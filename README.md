@@ -1,8 +1,3 @@
----
-output:
-  pdf_document: default
-  html_document: default
----
 ## tweet-urlscrapper
 
 This R code is useful for examing news shared by twitter users. The functions provided: 
