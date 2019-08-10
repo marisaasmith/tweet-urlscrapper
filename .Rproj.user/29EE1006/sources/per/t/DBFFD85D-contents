@@ -1,8 +1,3 @@
----
-output:
-  pdf_document: default
-  html_document: default
----
 ## tweet-urlscrapper
 
 This R code is useful for examing news shared by twitter users. The functions provided: 
@@ -27,17 +22,15 @@ tweets <- read.csv("https://raw.githubusercontent.com/marisaasmith/tweet-urlscra
 Run `fullUrl`, `getSource`, and `getUrl` functions
 
 ```{r}
-
 getSource <- function(df){
   df %>% 
-    mutate(source=full_url %>%
-             stringr::str_replace("^(https?:\\/\\/)?(www\\.)?", "") %>%
-             stringr::str_extract("([\\da-z\\.-]+)\\.([a-z\\.]{2,6})") %>%
-             stringr::str_replace("^[am]{1}\\.", ""))
+    mutate(source=urls_expanded_url %>%
+    str_replace("^(https?:\\/\\/)?(www\\.)?", "") %>%
+    str_extract("([\\da-z\\.-]+)\\.([a-z\\.]{2,6})") %>%
+    str_replace("^[am]{1}\\.", ""))
 }
-```
 
-```{r}
+
 getUrl <- function(df){
   require(tidyverse)
   df %>%
@@ -46,7 +39,8 @@ getUrl <- function(df){
     mutate(full_url = ifelse(stringr::str_detect(url,"https://t.co/[a-z,A-Z,0-9]*", negate = F) == T, 
                              {httr::GET(url) %>% magrittr::use_series("url")}, 
                              NA)) %>% group_by(full_url) %>% 
-    distinct() %>% select(-url) %>% getSource()
+    distinct() %>% select(-url) %>% 
+    mutate(source = getSource (full_url))
 }
 
 ```
