@@ -37,7 +37,7 @@ getUrl <- function(df){
   require(tidyverse)
   df %>%
     mutate(url = stringr::str_extract_all(text, "https://t.co/[a-z,A-Z,0-9]*")) %>%
-    tidyr::unnest(url) %>% rowwise() %>%
+    tidyr::unnest(url) %>% dplyr::rowwise() %>%
     mutate(full_url = ifelse(stringr::str_detect(url,"https://t.co/[a-z,A-Z,0-9]*", negate = F) == T, 
                              {httr::GET(url) %>% magrittr::use_series("url")}, 
                              NA)) %>% group_by(full_url) %>% 
