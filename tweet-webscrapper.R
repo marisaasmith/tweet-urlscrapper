@@ -22,7 +22,7 @@ getUrl <- function(df){
 getText <- function(url_vector, source_vector){
   require(rvest)
   require(tidyverse)
-  source_vector <- test$source %>%
+  source_vector <- source_vector %>%
   {grep("twitter", ., value = TRUE, invert = T)}%>%
   { grep("youtube", ., value = TRUE, invert = T) }
   url_vector <- url_vector %>% {grep("twitter", ., value = TRUE, invert = T)} %>% 
